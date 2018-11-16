@@ -1,7 +1,5 @@
 package game;
 
-import game.GameObjects.Item;
-
 import javax.swing.JFrame;
 import java.awt.*;
 import java.awt.image.BufferedImage;
