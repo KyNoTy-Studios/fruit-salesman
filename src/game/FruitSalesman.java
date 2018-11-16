@@ -1,3 +1,5 @@
+package game;
+
 import javax.swing.JFrame;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -7,22 +9,28 @@ public class FruitSalesman extends Canvas implements Runnable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final int WIDTH = 400;
-    public static final int HEIGHT = WIDTH/16*9;
-    public static final int SCALE = 2;
+    public int width;
+    public int height;
+    public int scale = 1;
 
     private JFrame frame;
 
     public int tickCount = 0;
     public boolean running = false;
 
-    public BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+    public BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
     public int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 
     public FruitSalesman() {
-        setMinimumSize(new Dimension(WIDTH*SCALE, HEIGHT*SCALE));
-        setMaximumSize(new Dimension(WIDTH*SCALE, HEIGHT*SCALE));
-        setPreferredSize(new Dimension(WIDTH*SCALE, HEIGHT*SCALE));
+        this(400, 400/16*9);
+    }
+
+    public FruitSalesman(int targetWidth, int targetHeight) {
+        width = targetWidth;
+        height = targetHeight;
+        setMinimumSize(new Dimension(width*scale, height*scale));
+        setMaximumSize(new Dimension(width*scale, height*scale));
+        setPreferredSize(new Dimension(width*scale, height*scale));
 
         frame = new JFrame("Fruit Salesman");
 
