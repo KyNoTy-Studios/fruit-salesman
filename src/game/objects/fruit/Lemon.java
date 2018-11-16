@@ -2,18 +2,18 @@ package game.objects.fruit;
 
 import game.objects.Item;
 
-public class Apple implements Item {
-    private static final int ID = 3;
-    private static final String NAME = "Apple";
+public class Lemon implements Item {
+    private static final int ID = 8;
+    private static final String NAME = "Lemon";
     private long price;
     private int[] pixels;
     private int x, y;
 
-    public Apple(long price) {
+    public Lemon(long price) {
         this(price, -1, -1);
     }
 
-    public Apple(long price, int x, int y) {
+    public Lemon(long price, int x, int y) {
         this.price = price;
         this.x = x;
         this.y = y;
@@ -23,7 +23,7 @@ public class Apple implements Item {
         return ID;
     }
 
-    public String getName() {
+    public String getName(){
         return NAME;
     }
 

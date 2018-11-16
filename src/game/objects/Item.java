@@ -21,6 +21,12 @@ public interface Item {
     long getPrice();
 
     /**
+     * Updates the price of the item.
+     * @param price the new price of the item as a long
+     */
+    void setPrice(long price);
+
+    /**
      * Retuns the sprite of the item.
      * @return the item's sprite as a BufferedImage
      */
@@ -50,6 +56,4 @@ public interface Item {
      * Sets item's x and y values to -1 (invalid position);
      */
     void clearPos();
-
-
 }

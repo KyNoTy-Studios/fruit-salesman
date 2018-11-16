@@ -31,6 +31,10 @@ public class Banana implements Item {
         return price;
     }
 
+    public void setPrice(long price) {
+        this.price = price;
+    }
+
     public int[] getSprite() {
         return pixels;
     }
