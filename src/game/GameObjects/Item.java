@@ -1,8 +1,10 @@
 package game.GameObjects;
 
-import java.awt.image.BufferedImage;
-
 public interface Item {
+
+    /**
+     *
+     */
 
     /**
      * Returns the name of the item
