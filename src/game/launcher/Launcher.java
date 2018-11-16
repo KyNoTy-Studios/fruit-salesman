@@ -9,33 +9,28 @@ public class Launcher
 	private static void Launch(){
 
 		String[] optionsList = new String[] {"800x600 (16:9)", "Test-Res"};
-		JComboBox<String> optionsBox = new JComboBox<String>(optionsList);
+		JComboBox<String> optionsBox = new JComboBox<>(optionsList);
 		
 		JFrame frame = new JFrame("Launcher");
 		JButton setter = new JButton("PLAY");
-		setter.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e){
-			FruitSalesman fruit = new FruitSalesman();
+
+		setter.addActionListener((ActionEvent event) -> {
+			new FruitSalesman().start();
 			frame.dispose();
-			}
 		});
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		optionsBox.setPreferredSize(new Dimension(40,60));
-		frame.add(new JLabel(new ImageIcon("C:/Users/Kyle/Desktop/fruit-salesman/src/game/launcher/logo.png")));
+
+		frame.add(new JLabel(new ImageIcon("logo.png")));
 		frame.add(optionsBox, BorderLayout.SOUTH);
 		frame.add(setter, BorderLayout.NORTH);
-		
-        frame.pack();
+		frame.pack();
+
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-		}
-	public static void main(String[] args)
-	{
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                Launch();
-            }
-        });
-}
+	}
+	public static void main(String[] args) {
+		javax.swing.SwingUtilities.invokeLater(() -> Launch());
+	}
 }
