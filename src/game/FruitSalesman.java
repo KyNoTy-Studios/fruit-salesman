@@ -109,35 +109,4 @@ public class FruitSalesman extends Canvas implements Runnable {
     public void render() {
 
     }
-
-    public static void main(String[] args) {
-
-        int[] pixelr = {1, 2, 3};
-        Item item = new Fruit("Apple", 5L, pixelr);
-        new FruitSalesman(800, 600).start();
-    }
-
-    private static class Fruit implements Item {
-        private String name;
-        private long price;
-        private int[] pixels;
-
-        public Fruit(String name, long price, int[] pixels) {
-            this.name = name;
-            this.price = price;
-            this.pixels = pixels;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public long getPrice() {
-            return price;
-        }
-
-        public int[] getSprite() {
-            return pixels;
-        }
-    }
 }
