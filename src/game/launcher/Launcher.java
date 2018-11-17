@@ -4,9 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import game.FruitSalesman;
 
-public class Launcher 
-{
-	private static void Launch(){
+public class Launcher {
+	private static void launch(){
 
 		String[] optionsList = new String[] {"800x600 (16:9)", "Test-Res"};
 		JComboBox<String> optionsBox = new JComboBox<>(optionsList);
@@ -21,7 +20,7 @@ public class Launcher
 
 		optionsBox.setPreferredSize(new Dimension(40,60));
 
-		frame.add(new JLabel(new ImageIcon("logo.png")));
+		frame.add(new JLabel(new ImageIcon(Launcher.class.getResource("logo.png"))));
 		frame.add(optionsBox, BorderLayout.SOUTH);
 		frame.add(setter, BorderLayout.NORTH);
 		frame.pack();
@@ -31,6 +30,6 @@ public class Launcher
         frame.setVisible(true);
 	}
 	public static void main(String[] args) {
-		javax.swing.SwingUtilities.invokeLater(() -> Launch());
+		javax.swing.SwingUtilities.invokeLater(() -> launch());
 	}
 }

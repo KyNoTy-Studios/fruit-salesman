@@ -5,11 +5,26 @@ import java.util.*;
 public class Map {
 
 
+// <<<<<<< HEAD
 	final int emptyPodium = 1;	// Making a boundary variable for podium and border
 	final int border = 2;    	
 	int mapCol = 8;		// These define the map dimensions
 	int mapRow = 8;
 	int mapArr[][] = new int[mapCol][mapRow];	//making the 2d array that is the "map"
+// =======
+    /**
+     * Checks if the podium is full
+     * @param map 2D int array representing the map position.
+     * @param col integer representing the column position in the map.
+     * @param row integer representing thr row position in the map.
+     * @return boolean representing whether the podium is full or not.
+     */
+    public boolean isFull(int [][] map, int col, int row ) {
+        // If it doesn't equal empty podium, it's a full podium
+        if (map[col][row] != 1) return true;
+        else return false;
+    }
+// >>>>>>> 2eaf621e1784b74d995502109f7a26b99837833d
 
 	// no self defined constructors needed because there shouldn't be any other call other than 	Map exampleMap = new Map(); 
 	

@@ -1,9 +1,13 @@
 package game;
 
-import javax.swing.JFrame;
+import game.gfx.Screen;
+import game.gfx.SpriteSheet;
+
 import java.awt.*;
+import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import javax.swing.JFrame;
 
 public class FruitSalesman extends Canvas implements Runnable {
 
@@ -20,6 +24,10 @@ public class FruitSalesman extends Canvas implements Runnable {
 
     public BufferedImage image;
     public int[] pixels;
+
+    public Screen screen;
+
+    public InputController input;
 
     public FruitSalesman() {
         this(400, 400/16*9);
@@ -47,6 +55,11 @@ public class FruitSalesman extends Canvas implements Runnable {
         pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
     }
 
+    public void init() {
+        screen = new Screen(WIDTH, HEIGHT, new SpriteSheet("fruit_assets.png"));
+        input = new InputController(this);
+    }
+
     public synchronized void start() {
         running = true;
         new Thread(this).start();
@@ -66,6 +79,8 @@ public class FruitSalesman extends Canvas implements Runnable {
 
         long lastTimer = System.currentTimeMillis();
         double delta = 0;
+
+        init();
 
         while(running) {
             long now = System.nanoTime();
@@ -102,9 +117,33 @@ public class FruitSalesman extends Canvas implements Runnable {
 
     public void tick() {
         tickCount++;
+
+        if(input.up.isPressed()) {
+            // Move character Up 1
+        }
+        if(input.down.isPressed()) {
+            // Move character Down 1
+        }
+        if(input.left.isPressed()) {
+            // Move character Left 1
+        }
+        if(input.right.isPressed()) {
+            // Move character Right 1
+        }
     }
 
     public void render() {
+        BufferStrategy bs = getBufferStrategy();
+        if(bs == null) {
+            createBufferStrategy(3);
+            return;
+        }
 
+        screen.render(pixels, 0, WIDTH);
+
+        Graphics g = bs.getDrawGraphics();
+        g.drawImage(screen.sheet.image, 0, 0, width, height, 0, 0, screen.sheet.width, screen.sheet.height, null);
+        g.dispose();
+        bs.show();
     }
 }
