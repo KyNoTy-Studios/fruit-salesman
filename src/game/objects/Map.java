@@ -35,7 +35,7 @@ public class Map {
     /**
      * Checks if the podium is full
      * @param map 2D int array representing the map position.
-     * @param col integer representing the column posiiton in the map.
+     * @param col integer representing the column position in the map.
      * @param row integer representing thr row position in the map.
      * @return boolean representing whether the podium is full or not.
      */
