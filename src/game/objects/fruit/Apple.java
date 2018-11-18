@@ -1,6 +1,5 @@
-package game.objects.fruit;
 
-import game.objects.Item;
+import game.objects.*;
 
 public class Apple implements Item {
     private static final int ID = 3;
