@@ -2,6 +2,7 @@ package game;
 
 import game.gfx.Screen;
 import game.gfx.SpriteSheet;
+import game.gfx.Color;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -24,13 +25,15 @@ public class FruitSalesman extends Canvas implements Runnable {
 
     public BufferedImage image;
     public int[] pixels;
+    // Array of supported RGB colors
+    public int[] colors = new int[(int)Math.pow(6, 3)];
 
     public Screen screen;
 
     public InputController input;
 
     public FruitSalesman() {
-        this(400, 400/16*9);
+        this(800, 800/16*9);
     }
 
     public FruitSalesman(int targetWidth, int targetHeight) {
@@ -56,6 +59,19 @@ public class FruitSalesman extends Canvas implements Runnable {
     }
 
     public void init() {
+        int index = 0;
+        for(int r = 0; r < 6; r++) {
+            for(int g = 0; g < 6; g++) {
+                for(int b = 0; b < 6; b++) {
+                    int rr = r*255/5;
+                    int gg = g*255/5;
+                    int bb = b*255/5;
+
+                    colors[index++] = rr << 16 | gg << 8 | bb;
+                }
+            }
+        }
+
         screen = new Screen(WIDTH, HEIGHT, new SpriteSheet("fruit_assets.png"));
         input = new InputController(this);
     }
@@ -139,7 +155,18 @@ public class FruitSalesman extends Canvas implements Runnable {
             return;
         }
 
-        screen.render(pixels, 0, WIDTH);
+        for(int y = 0; y < 32; y++) {
+            for(int x = 0; x < 32; x++) {
+                screen.render(x<<3, y<<3, 0, Color.get(555, 500, 050, 005));
+            }
+        }
+
+        for(int y = 0; y < screen.height; y++) {
+            for(int x = 0; x < screen.width; x++) {
+                int colorCode = screen.pixels[x+y*screen.width];
+                if(colorCode < 255) pixels[x+y*width] = colors[colorCode];
+            }
+        }
 
         Graphics g = bs.getDrawGraphics();
         g.drawImage(screen.sheet.image, 0, 0, width, height, 0, 0, screen.sheet.width, screen.sheet.height, null);
